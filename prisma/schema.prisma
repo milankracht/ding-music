@@ -62,7 +62,7 @@ model Product {
   prio      Int @default(1)
 }
 
-model Order {
+model Delivery {
   id        Int     @id @default(autoincrement())
   uuid      String  @unique @default(uuid())
   clientId  Int

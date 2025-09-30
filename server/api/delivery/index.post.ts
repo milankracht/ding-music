@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const newOrder = await prisma.order.create({
+  const newDelivery = await prisma.delivery.create({
     data: {
       uuid: crypto.randomUUID(),
       clientId: body.clientId,
@@ -21,5 +21,5 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  return newOrder
+  return newDelivery
 })

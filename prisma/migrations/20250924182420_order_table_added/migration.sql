@@ -13,7 +13,7 @@ ALTER TABLE `Product` ADD COLUMN `artist` VARCHAR(191) NOT NULL,
     MODIFY `tracklist` MEDIUMTEXT NOT NULL;
 
 -- CreateTable
-CREATE TABLE `Order` (
+CREATE TABLE `Delivery` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(191) NOT NULL,
     `clientId` INTEGER NOT NULL,

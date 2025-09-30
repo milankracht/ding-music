@@ -63,7 +63,7 @@ const submitOrder = () => {
 }
 
 const createOrder = async () => {
-  return $fetch('/api/order', {
+  return $fetch('/api/delivery', {
     method: 'POST',
     body: {
       clientId: client.value.id,
