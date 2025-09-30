@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum ClientStatus {
+  active
+  inactive
+}
+
+enum ProductType {
+  cd
+  vinyl
+}
+
+enum CurrencyType {
+  euro
+  dollar
+}
+
+enum OrderStatus {
+  pending
+  error
+  processed
+}
+
+model Client {
+  id        Int     @id @default(autoincrement())
+  uuid      String  @unique @default(uuid())
+  name      String
+  email     String  @unique
+  createdAt DateTime @default(now())
+  lastActivity DateTime @default(now())
+  address   String
+  postalCode  String
+  city      String
+  country   String
+  status    ClientStatus @default(active)
+}
+
+model Product {
+  id        Int     @id @default(autoincrement())
+  title     String
+  artist    String
+  year      Int
+  type      ProductType
+  price     Decimal @db.Decimal(6,2)
+  currency  CurrencyType
+  image     String
+  description String   @db.MediumText
+  tracklist String   @db.MediumText
+  prio      Int @default(1)
+}
+
+model Order {
+  id        Int     @id @default(autoincrement())
+  uuid      String  @unique @default(uuid())
+  clientId  Int
+  details   String   @db.MediumText
+  createdAt DateTime @default(now())
+  status    OrderStatus @default(pending)
+  lastStatusUpdate  DateTime @default(now())
+}
