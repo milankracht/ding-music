@@ -10,16 +10,24 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const newDelivery = await prisma.delivery.create({
-    data: {
-      uuid: crypto.randomUUID(),
-      clientId: body.clientId,
-      details: body.details,
-      createdAt: new Date(),
-      status: 'pending',
-      lastStatusUpdate: new Date(),
-    },
-  })
+  try {
+    const newDelivery = await prisma.delivery.create({
+      data: {
+        uuid: crypto.randomUUID(),
+        clientId: body.clientId,
+        details: body.details,
+        createdAt: new Date(),
+        status: 'pending',
+        lastStatusUpdate: new Date(),
+      },
+    })
 
-  return newDelivery
+    return newDelivery
+  } catch (err: any) {
+    console.error('Prisma error:', err)
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Internal server error',
+    })
+  }
 })
