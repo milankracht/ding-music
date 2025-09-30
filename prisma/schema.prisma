@@ -28,7 +28,7 @@ enum CurrencyType {
   dollar
 }
 
-enum OrderStatus {
+enum DeliveryStatus {
   pending
   error
   processed
@@ -68,6 +68,6 @@ model Delivery {
   clientId  Int
   details   String   @db.MediumText
   createdAt DateTime @default(now())
-  status    OrderStatus @default(pending)
+  status    DeliveryStatus @default(pending)
   lastStatusUpdate  DateTime @default(now())
 }
