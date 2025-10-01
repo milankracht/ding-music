@@ -11,10 +11,10 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  if (!body.clientId && body.status) {
+  if (!body.status) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'ClientId and status are required',
+      statusMessage: 'Status is required',
     })
   }
 

@@ -69,20 +69,22 @@ const createOrder = async () => {
     method: 'POST',
     body: {
       clientId: client.value.id,
-      details: JSON.stringify(useCartStore().cart),
+      details: JSON.stringify(cartStore.cart),
     },
   })
 }
 
 const toPayment = async (deliveryUuid) => {
+  console.log('toPayment', deliveryUuid)
   const response = await $fetch('/api/create-payment', {
     method: 'POST',
     body: {
-      amount: useCartTotal(cartStore, productStore, SHIPPING_COST),
+      amount: useCartTotal(cartStore, productStore, SHIPPING_COST).value,
       clientId: client.value.id,
       deliveryUuid,
     },
   })
+  console.log('response', response)
   window.location.href = response.checkoutUrl
 }
 </script>
