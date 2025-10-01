@@ -14,5 +14,9 @@ export const useClientStore = defineStore('client', {
       this.client = client
       localStorage.setItem('client', client.uuid)
     },
+    clearClient() {
+      this.client = {}
+      localStorage.removeItem('client')
+    },
   },
 })

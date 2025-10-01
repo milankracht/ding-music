@@ -38,6 +38,9 @@
 
 <script setup>
 const clientStore = useClientStore()
+const cartStore = useCartStore()
+const productStore = useProductStore()
+import { useCartTotal } from '~/composables/useCartTotal'
 
 const clientFields = [
   { key: 'email', label: 'Email' },
@@ -53,8 +56,7 @@ const client = computed(() => clientStore.client)
 const submitOrder = () => {
   createOrder()
     .then((response) => {
-      console.log('Client created:', response)
-      console.log('Go to payment gateway...')
+      toPayment(response.uuid)
     })
     .catch(() => {
       setToastMessage('Error processing order', 'error')
@@ -70,6 +72,18 @@ const createOrder = async () => {
       details: JSON.stringify(useCartStore().cart),
     },
   })
+}
+
+const toPayment = async (deliveryUuid) => {
+  const response = await $fetch('/api/create-payment', {
+    method: 'POST',
+    body: {
+      amount: useCartTotal(cartStore, productStore, SHIPPING_COST),
+      clientId: client.value.id,
+      deliveryUuid,
+    },
+  })
+  window.location.href = response.checkoutUrl
 }
 </script>
 

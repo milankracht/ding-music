@@ -38,6 +38,7 @@
 <script setup>
 import { SHIPPING_COST } from '~/utils/constants'
 import { formatPrice } from '~/utils/helper/price'
+import { useCartTotal } from '~/composables/useCartTotal'
 
 const props = defineProps({
   variant: {
@@ -56,14 +57,7 @@ const cartItems = computed(() => {
 
 const productStore = useProductStore()
 
-const cartTotal = computed(() => {
-  return cartStore.currentCart
-    .reduce((total, item) => {
-      const product = productStore.allProducts.find((p) => p.id === +item.id)
-      return total + (product ? product.price * item.qty : 0)
-    }, SHIPPING_COST)
-    .toFixed(2)
-})
+const cartTotal = useCartTotal(cartStore, productStore, SHIPPING_COST)
 </script>
 
 <style scoped>
