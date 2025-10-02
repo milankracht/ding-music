@@ -13,12 +13,12 @@ export default defineEventHandler(async (event) => {
       value: String(body.amount),
     },
     description: `Bestelling #${body.deliveryUuid}`,
-    redirectUrl: `${process.env.BASE_URL}/payment-result?orderId=${body.deliveryUuid}`,
+    redirectUrl: `${process.env.BASE_URL}/payment-result`,
     webhookUrl: `${process.env.WEBHOOK_BASE_URL}/api/mollie-webhook`,
     metadata: {
       order_id: body.deliveryUuid,
     },
-    method: ['ideal', 'creditcard', 'in3'],
+    method: ['ideal', 'creditcard' as any],
   })
 
   return { checkoutUrl: payment.getCheckoutUrl() }

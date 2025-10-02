@@ -107,7 +107,6 @@ const createMolliePayment = async (deliveryUuid) => {
     method: 'POST',
     body: {
       amount: useCartTotal(cartStore, productStore).value,
-      clientId: client.value.id,
       deliveryUuid,
     },
   })
