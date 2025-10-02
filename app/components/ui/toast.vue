@@ -60,13 +60,14 @@ const iconColor = computed(() => {
 
 <style scoped>
 .toast {
-  @apply absolute w-full -bottom-[50vh] rounded shadow-md;
-  transition: var(--transition-out);
+  @apply fixed w-full left-0 rounded shadow-md pointer-events-none;
+  bottom: -100px; /* Hide below the viewport */
+  transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 50;
 }
 
 .toast--open {
-  @apply bottom-0;
-  transition: var(--transition-in);
+  bottom: 0; /* Show above bottom, e.g. 4rem (64px) */
 }
 
 .toast__content {

@@ -21,7 +21,7 @@
     <section class="content-container">
       <h2>You might also like</h2>
 
-      <div class="flex flex-row space-between flex-wrap gap-8">
+      <div class="flex flex-row gap-4 space-between flex-wrap gap-8">
         <template v-if="prioTwoProducts.length">
           <Album
             v-for="product in prioTwoProducts"

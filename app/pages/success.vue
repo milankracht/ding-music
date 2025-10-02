@@ -12,22 +12,14 @@
         Something went wrong while sending email with your order details
       </p>
       <p v-else>You received an email with your order status as well.</p>
-      <div class="flex flex-row justify-between items-center w-full my-16">
-        <UiButton
-          label="Send mail"
-          variant="primary"
-          size="lg"
-          @click="sendMail()"
-        />
-      </div>
     </section>
   </div>
 </template>
 
 <script setup>
 const clientStore = useClientStore()
-
-const client = clientStore.currentClient
+const cartStore = useCartStore()
+const client = computed(() => clientStore.client)
 
 const message = 'Bedankt voor je bestelling!'
 
@@ -38,17 +30,28 @@ const sendMail = async () => {
     await $fetch('/api/sendMail', {
       method: 'POST',
       body: {
-        to: client.email,
-        bcc: 'info@ding-music.nl',
+        to: client.value.email,
         subject: 'Confirmation of your order',
         message,
       },
     })
 
-    clientStore.clearClient()
+    mailFailed.value = false
   } catch (error) {
     console.error('Error sending email:', error)
     mailFailed.value = true
   }
 }
+
+watch(
+  client,
+  async (val) => {
+    if (val && val.email) {
+      await sendMail()
+      clientStore.clearClient()
+      cartStore.clearCart()
+    }
+  },
+  { immediate: true }
+)
 </script>

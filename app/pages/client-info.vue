@@ -10,7 +10,6 @@
           name="email"
           label="Email"
           type="email"
-          placeholder="Enter your email address"
           required
           @blur="isDirty.email = true"
           :errorMessage="
@@ -24,7 +23,6 @@
           name="name"
           label="Name"
           type="text"
-          placeholder="Enter your name"
           required
           @blur="isDirty.name = true"
           :errorMessage="
@@ -84,7 +82,9 @@
           label="Phone"
           type="text"
         />
-        <div class="flex flex-row justify-between items-center w-full my-8">
+        <div
+          class="flex flex-row gap-4 justify-between items-center w-full my-8"
+        >
           <UiButton
             label="Back"
             variant="secondary"
@@ -101,11 +101,13 @@
         </div>
       </form>
     </section>
+  </div>
+  <Teleport to="body">
     <UiToast
       :message="message"
       :type="messageType"
     />
-  </div>
+  </Teleport>
 </template>
 
 <script setup>
@@ -217,18 +219,21 @@ const updateClient = (uuid) => {
 
 const clientStore = useClientStore()
 
-// TODO: convert to a watcher
-onMounted(() => {
-  if (clientStore.currentClient) {
-    Object.assign(formData, {
-      name: clientStore.currentClient.name || '',
-      email: clientStore.currentClient.email || '',
-      phone: clientStore.currentClient.phone || '',
-      address: clientStore.currentClient.address || '',
-      postalCode: clientStore.currentClient.postalCode || '',
-      city: clientStore.currentClient.city || '',
-      country: clientStore.currentClient.country || '',
-    })
-  }
-})
+watch(
+  () => clientStore.currentClient,
+  (newClient) => {
+    if (newClient) {
+      Object.assign(formData, {
+        name: newClient.name || '',
+        email: newClient.email || '',
+        phone: newClient.phone || '',
+        address: newClient.address || '',
+        postalCode: newClient.postalCode || '',
+        city: newClient.city || '',
+        country: newClient.country || '',
+      })
+    }
+  },
+  { immediate: true }
+)
 </script>

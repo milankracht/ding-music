@@ -6,6 +6,8 @@
   --secondary-color: #7a1f4e;
   --light-color: #ffffff;
   --dark-color: #45102b;
+  --black: #000000;
+  --white: #ffffff;
   --transition-in: all 0.3s ease-in-out;
   --transition-out: all 0.15s ease-in-out;
   --drop-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.5);
@@ -57,8 +59,16 @@ p {
   @apply text-base pb-4 leading-6;
 }
 
+a {
+  @apply text-white underline;
+}
+
+a:hover {
+  color: var(--primary-color-hover);
+}
+
 .wrapper {
-  @apply z-0 top-0 w-screen h-screen bg-fixed bg-cover bg-center overflow-auto;
+  @apply z-0 top-0 pb-16 w-screen h-screen bg-fixed bg-cover bg-center overflow-auto;
   animation-name: wrapper-fade-in;
   animation-duration: 0.5s;
 }
@@ -80,20 +90,35 @@ p {
 }
 
 @keyframes wrapper-fade-in {
-  from { opacity: 0; transform: translate(0, -200px); }
-  100% { opacity: 1; transform: translate(0, 0); }
+  from {
+    opacity: 0;
+    transform: translate(0, -200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
 }
 
 @keyframes content-fade-in {
-  from { opacity: 0; transform: translate(0, 200px); }
-  50% { opacity: 0; transform: translate(0, 200px); }
-  100% { opacity: 1; transform: translate(0, 0); }
+  from {
+    opacity: 0;
+    transform: translate(0, 200px);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(0, 200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
 textarea {
   @apply w-full px-2 py-2 border border-white bg-transparent rounded-md transition duration-200;
 }

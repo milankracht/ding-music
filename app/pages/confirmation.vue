@@ -17,7 +17,9 @@
         </template>
       </dl>
 
-      <div class="flex flex-row justify-between items-center w-full my-16">
+      <div
+        class="flex flex-row gap-4 justify-between items-center w-full my-16"
+      >
         <UiButton
           label="Back"
           variant="secondary"
@@ -26,14 +28,21 @@
         />
 
         <UiButton
-          label="Pay now"
+          :label="paymentButtonLabel"
           variant="primary"
           size="lg"
+          :disabled="paymentInProgress"
           @click="submitOrder()"
         />
       </div>
     </section>
   </div>
+  <Teleport to="body">
+    <UiToast
+      :message="message"
+      :type="messageType"
+    />
+  </Teleport>
 </template>
 
 <script setup>
@@ -74,18 +83,43 @@ const createOrder = async () => {
   })
 }
 
+const paymentInProgress = ref(false)
+const paymentButtonLabel = computed(() => {
+  if (paymentInProgress.value) {
+    return 'Processing...'
+  }
+  return 'Pay now'
+})
+
 const toPayment = async (deliveryUuid) => {
-  console.log('toPayment', deliveryUuid)
+  paymentInProgress.value = true
+  try {
+    await createMolliePayment(deliveryUuid)
+  } catch (error) {
+    paymentInProgress.value = false
+    setToastMessage('Error redirecting to payment', 'error')
+    clearToast()
+  }
+}
+
+const createMolliePayment = async (deliveryUuid) => {
   const response = await $fetch('/api/create-payment', {
     method: 'POST',
     body: {
-      amount: useCartTotal(cartStore, productStore, SHIPPING_COST).value,
+      amount: useCartTotal(cartStore, productStore).value,
       clientId: client.value.id,
       deliveryUuid,
     },
   })
-  console.log('response', response)
   window.location.href = response.checkoutUrl
+}
+
+const message = ref('')
+const messageType = ref('info')
+
+const setToastMessage = (msg, type = 'error') => {
+  message.value = msg
+  messageType.value = type
 }
 </script>
 

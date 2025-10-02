@@ -21,7 +21,7 @@
         <td class="pl-28">Shipping</td>
         <td></td>
         <td class="cart-table__amount font-bold">
-          {{ formatPrice(SHIPPING_COST) }}
+          {{ formatPrice(shippingCost.shipping.value) }}
         </td>
       </tr>
       <tr>
@@ -36,9 +36,10 @@
 </template>
 
 <script setup>
-import { SHIPPING_COST } from '~/utils/constants'
+import { SHIPPING_COST, SHIPPING_COST_CD_ONLY } from '~/utils/constants'
 import { formatPrice } from '~/utils/helper/price'
 import { useCartTotal } from '~/composables/useCartTotal'
+import { useShippingCost } from '~/composables/useShippingCost'
 
 const props = defineProps({
   variant: {
@@ -55,9 +56,25 @@ const cartItems = computed(() => {
   })
 })
 
+// const hasVinyl = computed(() => {
+//   const productStore = useProductStore()
+//   return cartStore.currentCart.some((cartItem) => {
+//     const product = productStore.allProducts.find(
+//       (prod) => prod.id === +cartItem.id
+//     )
+//     return product && product.type === 'vinyl'
+//   })
+// })
+
+// const shipping = computed(() => {
+//   return hasVinyl.value ? SHIPPING_COST : SHIPPING_COST_CD_ONLY
+// })
+
 const productStore = useProductStore()
 
-const cartTotal = useCartTotal(cartStore, productStore, SHIPPING_COST)
+const shippingCost = useShippingCost(cartStore, productStore)
+
+const cartTotal = useCartTotal(cartStore, productStore)
 </script>
 
 <style scoped>

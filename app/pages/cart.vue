@@ -6,7 +6,7 @@
       <h1>Cart</h1>
       <CartTable />
 
-      <div class="flex flex-row justify-between items-center w-full my-8">
+      <div class="flex flex-row gap-4 justify-between items-center w-full my-8">
         <UiButton
           label="Continue shopping"
           variant="secondary"

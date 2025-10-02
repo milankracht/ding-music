@@ -2,6 +2,7 @@
   <button
     :class="[props.variant, props.size]"
     :type="type"
+    :disabled="props.disabled"
   >
     <Icon
       v-if="props.icon"
@@ -36,12 +37,16 @@ const props = defineProps({
     type: String,
     default: 'button',
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
 
 <style scoped>
 button {
-  @apply flex flex-row gap-4 items-center font-bold uppercase rounded-lg text-lg font-semibold text-[var(--light-color)] leading-none border-transparent tracking-[10%] border-solid border-[2px] p-[0.625rem] cursor-pointer drop-shadow-[var(--drop-shadow-sm)];
+  @apply flex flex-row gap-4 items-center font-bold uppercase rounded-lg text-base md:text-lg font-semibold text-[var(--light-color)] leading-none border-transparent tracking-[10%] border-solid border-[2px] p-[0.625rem] cursor-pointer drop-shadow-[var(--drop-shadow-sm)];
 }
 
 button:hover {
@@ -49,11 +54,11 @@ button:hover {
 }
 
 button.sm {
-  @apply text-sm p-[0.375rem];
+  @apply text-xs md:text-xs p-1 md:p-[0.375rem];
 }
 
 button.lg {
-  @apply text-xl p-4;
+  @apply text-base md:text-lg p-2 md:p-3;
 }
 
 button.primary {
@@ -81,5 +86,10 @@ button.secondary.md {
 button.primary.lg,
 button.secondary.lg {
   @apply px-8;
+}
+
+button:disabled,
+button:disabled:hover {
+  @apply bg-gray-400 border-gray-400 cursor-not-allowed scale-100;
 }
 </style>
