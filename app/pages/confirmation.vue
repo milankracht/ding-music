@@ -12,8 +12,8 @@
           v-for="field in clientFields"
           :key="field.key"
         >
-          <dd>{{ field.label }}</dd>
-          <dt>{{ client[field.key] }}</dt>
+          <dt>{{ field.label }}</dt>
+          <dd>{{ client[field.key] }}</dd>
         </template>
       </dl>
 
@@ -34,6 +34,13 @@
           :disabled="paymentInProgress"
           @click="submitOrder()"
         />
+
+        <!-- <UiButton
+          label="Send test mail"
+          variant="primary"
+          size="lg"
+          @click="sendMail()"
+        /> -->
       </div>
     </section>
   </div>
@@ -120,6 +127,28 @@ const setToastMessage = (msg, type = 'error') => {
   message.value = msg
   messageType.value = type
 }
+
+// const sendMail = async () => {
+//   try {
+//     const response = await $fetch('/api/confirmation-mail', {
+//       method: 'POST',
+//       body: {
+//         to: 'milankracht@gmail.com',
+//         orderId: 'ORD12345',
+//         total: '89.95',
+//         subject: 'Your order confirmation from DING!',
+//         message: `Dear ${client.value.name},<br /><br />
+//         Thank you for your order! We are currently processing it and will notify you once it has shipped.<br /><br />
+//         Best regards,<br />
+//         The DING! Team`,
+//       },
+//     })
+//     if (response.success) alert('Bevestigingsmail verzonden!')
+//   } catch (err) {
+//     console.error(err)
+//     alert('Verzenden mislukt.')
+//   }
+// }
 </script>
 
 <style scoped>
@@ -127,10 +156,10 @@ dl {
   @apply grid grid-cols-2 gap-x-8 gap-y-4 max-w-[90%] md:max-w-[50%] mb-16;
 }
 
-dd {
+dt {
   @apply font-light text-gray-200;
 }
-dt {
+dd {
   @apply font-bold;
 }
 </style>

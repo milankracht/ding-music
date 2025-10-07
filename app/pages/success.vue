@@ -21,25 +21,27 @@ const clientStore = useClientStore()
 const cartStore = useCartStore()
 const client = computed(() => clientStore.client)
 
-const message = 'Bedankt voor je bestelling!'
-
 const mailFailed = ref(false)
 
 const sendMail = async () => {
   try {
-    await $fetch('/api/sendMail', {
+    const response = await $fetch('/api/confirmation-mail', {
       method: 'POST',
       body: {
         to: client.value.email,
-        subject: 'Confirmation of your order',
-        message,
+        orderId: 'ORD12345',
+        total: '89.95',
+        subject: 'Your order confirmation from DING!',
+        message: `Dear ${client.value.name},<br /><br />
+        Thank you for your order! We are currently processing it and will notify you once it has shipped.<br /><br />
+        Best regards,<br />
+        The DING! Team`,
       },
     })
-
-    mailFailed.value = false
-  } catch (error) {
-    console.error('Error sending email:', error)
-    mailFailed.value = true
+    if (response.success) alert('Confirmation mail has been sent!')
+  } catch (err) {
+    console.error(err)
+    alert('Unable to send confirmation mail.')
   }
 }
 

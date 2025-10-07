@@ -3,6 +3,7 @@ import prisma from '../utils/prisma'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ id: string }>(event)
+  const config = useRuntimeConfig()
 
   if (!body.id)
     throw createError({
@@ -11,7 +12,7 @@ export default defineEventHandler(async (event) => {
     })
 
   const mollieClient = createMollieClient({
-    apiKey: process.env.MOLLIE_API_KEY!,
+    apiKey: config.mollieApiKey,
   })
   const payment: Payment = await mollieClient.payments.get(body.id)
 

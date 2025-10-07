@@ -1,8 +1,8 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
+  const config = useRuntimeConfig()
 
-  // Use Resend API (https://resend.com/docs/api-reference/emails/send-email)
-  const RESEND_API_KEY = process.env.RESEND_API_KEY
+  const RESEND_API_KEY = config.resendApiKey
   if (!RESEND_API_KEY) {
     throw new Error('Missing RESEND_API_KEY in environment')
   }

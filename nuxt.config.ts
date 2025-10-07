@@ -1,13 +1,4 @@
 export default defineNuxtConfig({
-  app: {
-    head: {
-      title: 'DING!', // default fallback title
-      htmlAttrs: {
-        lang: 'en',
-      },
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    },
-  },
   future: {
     compatibilityVersion: 4,
   },
@@ -21,5 +12,10 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     databaseUrl: process.env.DATABASE_URL,
+    mollieApiKey: process.env.MOLLIE_API_KEY,
+    baseUrl: process.env.BASE_URL,
+    webhookBaseUrl: process.env.WEBHOOK_BASE_URL,
+    resendApiKey: process.env.RESEND_API_KEY,
+    brevoApiKey: process.env.BREVO_API_KEY,
   },
 })
