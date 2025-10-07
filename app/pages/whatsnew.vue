@@ -36,3 +36,11 @@
     </section>
   </div>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  title: "DING! - What's new!",
+  description:
+    'DING! album release show on October 7th at Theater De Liefde in Haarlem. Tickets available now!',
+})
+</script>

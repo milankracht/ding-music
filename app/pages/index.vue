@@ -19,17 +19,24 @@
         </div>
         <div class="p-2 md:col-span-2">
           <p>Available on special edition vinyl, CD and streaming platforms</p>
-          <!-- <UiButton
-            label="Pre-order now"
-            type="variant"
+          <UiButton
+            label="Order now"
+            variant="primary"
             size="lg"
-            @click="$router.push('/cart')"
-          /> -->
+            @click="$router.push('/order')"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  title: 'DING! - Homepage',
+  description: 'Official website of DING! - Beats Beyond album coming soon',
+})
+</script>
 
 <style scoped>
 .jumbotron {

@@ -14,7 +14,7 @@
         <NuxtLink to="/about">About</NuxtLink>
         <NuxtLink to="/whatsnew">What's New</NuxtLink>
         <NuxtLink to="/listen">Listen</NuxtLink>
-        <!-- <NuxtLink to="/order">Order</NuxtLink> -->
+        <NuxtLink to="/order">Order</NuxtLink>
         <NuxtLink to="/contact">Contact</NuxtLink>
         <NuxtLink
           to="/cart"
