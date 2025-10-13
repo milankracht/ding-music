@@ -19,12 +19,12 @@
         </div>
         <div class="p-2 md:col-span-2">
           <p>Available on special edition vinyl, CD and streaming platforms</p>
-          <UiButton
+          <!-- <UiButton
             label="Order now"
             variant="primary"
             size="lg"
             @click="$router.push('/order')"
-          />
+          /> -->
         </div>
       </div>
     </div>
