@@ -6,7 +6,7 @@
       <h1>Contact</h1>
       <p>
         For more info and inquiries please email us at<br />
-        <a href="mailto:info@ding-music.nl">info@ding-music.nl</a> or call<br />+31
+        <a href="mailto:mail@ding-music.nl">mail@ding-music.nl</a> or call<br />+31
         6 55 82 89 38
       </p>
     </section>
