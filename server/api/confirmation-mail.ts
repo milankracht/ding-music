@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
   })
 
   await transporter.sendMail({
-    from: '"DING!" <info@ding-music.nl>',
+    from: '"DING!" <noreply@ding-music.nl>',
     to: body.to,
     bcc: 'milankr8@icloud.com',
     subject: body.subject,
