@@ -4,7 +4,43 @@
   >
     <section class="content-container--first">
       <h1>What's new</h1>
-      <h2>Album release show on October 7th</h2>
+      <h3>Album available now!</h3>
+      <p>
+        <strong>Beats Beyond</strong> is available now on special edition vinyl
+        and CD. Order <NuxtLink to="/order">here</NuxtLink>
+      </p>
+      <p>The album can be streamed from several digital platforms as well:</p>
+      <ul class="mb-16">
+        <li>
+          <a
+            href="https://music.apple.com/nl/artist/ding/1825462843?l=en-GB"
+            target="_blank"
+            rel="noopener"
+            >Apple Music</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://open.spotify.com/album/0iRNn3YTKQiMxPZGlePtC5?si=qSxw_qjbTRauPMUUXJZtvQ"
+            target="_blank"
+            rel="noopener"
+            >Spotify</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://music.youtube.com/channel/UCaloQISb_5r-t5dcJRUI_zw?si=WKdUeq4_m115w_VG"
+            target="_blank"
+            rel="noopener"
+            >YouTube Music</a
+          >
+        </li>
+      </ul>
+      <hr />
+    </section>
+
+    <section class="content-container">
+      <h3>Album release show on October 7th</h3>
       <p>
         We are happy to announce that we will release our latest album
         <strong>Beats Beyond</strong> on 7 October at Theater De Liefde in
