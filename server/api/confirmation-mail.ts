@@ -3,6 +3,9 @@
  */
 
 import nodemailer from 'nodemailer'
+const config = useRuntimeConfig()
+
+const MAIL_PASSWORD = config.mailPassword
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -13,7 +16,7 @@ export default defineEventHandler(async (event) => {
     secure: true,
     auth: {
       user: 'mail@ding-music.nl',
-      pass: process.env.MAIL_PASSWORD,
+      pass: MAIL_PASSWORD,
     },
   })
 

@@ -17,5 +17,6 @@ export default defineNuxtConfig({
     webhookBaseUrl: process.env.WEBHOOK_BASE_URL,
     resendApiKey: process.env.RESEND_API_KEY,
     brevoApiKey: process.env.BREVO_API_KEY,
+    mailPassword: process.env.MAIL_PASSWORD,
   },
 })
