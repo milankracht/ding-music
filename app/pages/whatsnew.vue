@@ -4,6 +4,15 @@
   >
     <section class="content-container--first">
       <h1>What's new</h1>
+      <h3>Review in JazzFlits</h3>
+      <p>We had a nice review in Dutch magazine JazzFlits:</p>
+      <img
+        src="/img/JazzFlits.png"
+        alt="JazzFlits review"
+        class="my-8 w-full h-auto rounded-lg shadow-lg"
+      />
+    </section>
+    <section class="content-container">
       <h3>Album available now!</h3>
       <p>
         <strong>Beats Beyond</strong> is available now on special edition vinyl
